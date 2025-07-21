@@ -1,0 +1,40 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.navbar-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: #5c4033;
+}
+
+.hero {
+  background: url('Images/banner.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 700px;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-weight: bold;
+}
+
+.category-box {
+  background-color: #fff8f0;
+  transition: transform 0.3s;
+}
+
+.category-box:hover {
+  transform: scale(1.05);
+}
+
+.product-card img {
+  height: 200px;
+  object-fit: cover;
+}
+
+footer {
+  background-color: #5c4033;
+}

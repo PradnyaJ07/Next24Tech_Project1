@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product Details | CrafteNest</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg bg-light shadow-sm">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="index.html">CrafteNest</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="products.html">Shop</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 mb-4">
+        <img id="product-image" class="img-fluid rounded" alt="Product Image">
+      </div>
+      <div class="col-md-6">
+        <h2 id="product-name"></h2>
+        <p class="text-muted" id="product-price"></p>
+        <p id="product-desc"></p>
+        <button class="btn btn-dark" id="addToCartBtn">Add to Cart</button>
+        <p class="mt-3 text-success" id="success-msg" style="display:none">Added to cart successfully!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-dark text-white text-center py-3">
+  <p class="mb-0">&copy; 2025 CrafteNest. All rights reserved.</p>
+</footer>
+
+<script>
+const products = {
+  "1": {
+    name: "Beaded Necklace",
+    price: "499",
+    description: "This beautiful handcrafted beaded necklace is made from eco-friendly materials.",
+    image: "Images/product1.jpg"
+  },
+  "2": {
+    name: "Handmade Pot",
+    price: "699",
+    description: "A decorative handmade clay pot that adds charm to your space.",
+    image: "Images/product2.jpg"
+  },
+  "3": {
+    name: "Woolen Keychain",
+    price: "199",
+    description: "Cute woolen keychain, handcrafted with colorful threads.",
+    image: "Images/product3.jpg"
+  },
+  "4": {
+    name: "Thread Earrings",
+    price: "349",
+    description: "Lightweight earrings made with colorful threads.",
+    image: "Images/product4.jpg"
+  }
+};
+
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
+const product = products[id];
+
+if (product) {
+  document.getElementById("product-image").src = product.image;
+  document.getElementById("product-name").innerText = product.name;
+  document.getElementById("product-price").innerText = "₹" + product.price;
+  document.getElementById("product-desc").innerText = product.description;
+
+  document.getElementById("addToCartBtn").addEventListener("click", function() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.push({
+      name: product.name,
+      price: parseInt(product.price)
+    });
+    localStorage.setItem("cart", JSON.stringify(cart));
+    document.getElementById("success-msg").style.display = "block";
+  });
+} else {
+  document.querySelector(".container").innerHTML = "<h2 class='text-center'>Product not found.</h2>";
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
